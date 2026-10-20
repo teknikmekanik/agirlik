@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<meta name="description" content="Sac, mil, boru, kutu profil, köşebent ve standart profiller için malzeme ağırlık hesabı.">
+<title>Ağırlık Hesabı · Teknik Mekanik</title>
+<style>
+:root{--bg:#123a63;--grid:#244a71;--panel:#0e2a4a;--row:#16426e;--line:#2c5480;--fg:#f4f8fc;--dim:#96b4d2;--yel:#f2b705;--teal:#5ae1eb;--red:#ff6040;--grn:#78dc8c;--dark:#0c2848;color-scheme:dark}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{margin:0}
+body{background-color:var(--bg);background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:40px 40px;color:var(--fg);font:15px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;padding:0 16px 40px}
+.wrap{max-width:1180px;margin:0 auto}
+header{display:flex;align-items:center;gap:14px;padding:18px 0 10px;flex-wrap:wrap}
+.logo{border:3px solid var(--fg);font:700 22px/1 ui-monospace,"DejaVu Sans Mono",Menlo,monospace;padding:7px 10px}
+.brand{font:700 18px ui-monospace,"DejaVu Sans Mono",Menlo,monospace;letter-spacing:.04em}
+header h1{margin:0;font:700 26px/1.1 Georgia,"DejaVu Serif",serif;flex:1 1 100%}
+header h1 span{color:var(--yel)}
+.ig{margin-left:auto;display:flex;align-items:center;gap:9px;background:var(--yel);color:var(--dark);text-decoration:none;border-radius:12px;padding:7px 14px 7px 10px;font:600 14px/1.15 system-ui}
+.ig span{display:flex;flex-direction:column}
+.ig small{font-size:11.5px;font-weight:600;opacity:.8}
+.ig:hover{filter:brightness(1.08)}
+@media(max-width:480px){.ig{order:3;flex:1 1 100%;justify-content:center;margin-left:0}}
+.lang{display:flex;border:2px solid var(--line);border-radius:10px;overflow:hidden}
+.lang button{background:transparent;color:var(--dim);border:0;padding:6px 12px;font:600 13px system-ui;cursor:pointer}
+.lang button.on{background:var(--yel);color:var(--dark)}
+.grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:16px}
+@media(max-width:860px){.grid{grid-template-columns:minmax(0,1fr)}.col{display:contents!important}.dimcard{order:2}.steps{order:3}}
+.card{background:var(--panel);border:2px solid var(--line);border-radius:16px;padding:16px;min-width:0}
+.card h2{margin:0 0 12px;font:700 13px/1 system-ui;letter-spacing:.08em;text-transform:uppercase;color:var(--dim)}
+.types{display:grid;grid-template-columns:repeat(auto-fill,minmax(88px,1fr));gap:8px}
+.types button{background:var(--row);border:2px solid transparent;border-radius:12px;color:var(--fg);padding:8px 4px 6px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:4px;font:600 12.5px system-ui}
+.types button svg{width:44px;height:34px}
+.types button.on{border-color:var(--yel);color:var(--yel)}
+.fig{display:flex;justify-content:center;margin:4px 0 12px}
+.fig svg{width:100%;max-width:340px;height:auto}
+.fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px}
+label{display:flex;flex-direction:column;gap:4px;font-size:12.5px;color:var(--dim)}
+input,select{background:var(--dark);border:2px solid var(--line);border-radius:10px;color:var(--fg);font:600 16px ui-monospace,"DejaVu Sans Mono",Menlo,monospace;padding:9px 10px;width:100%;min-width:0}
+input:focus,select:focus{outline:none;border-color:var(--teal)}
+.chk{flex-direction:row;align-items:center;gap:8px;margin-top:10px;color:var(--fg)}
+.chk input{width:auto}
+.res{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:14px}
+.res div{background:var(--row);border-radius:12px;padding:10px 12px}
+.res small{display:block;color:var(--dim);font-size:12px}
+.res b{font:700 20px ui-monospace,"DejaVu Sans Mono",Menlo,monospace;color:var(--teal);font-variant-numeric:tabular-nums}
+.res .tot{background:var(--yel);color:var(--dark)}
+.res .tot small{color:var(--dark)}
+.res .tot b{color:var(--dark);font-size:24px}
+@media(max-width:480px){.res{grid-template-columns:1fr 1fr}.res .tot{grid-column:1/-1}}
+.btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.btn{background:var(--yel);color:var(--dark);border:0;border-radius:12px;padding:11px 16px;font:700 15px system-ui;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--fg);border:2px solid var(--line)}
+.btn.teal{background:var(--teal)}
+.col{display:flex;flex-direction:column;gap:16px;min-width:0}
+.dimcard{align-self:start}
+.steps ol{margin:0;padding:0;list-style:none;display:grid;gap:8px}
+.steps li{background:var(--row);border-left:4px solid var(--yel);border-radius:10px;padding:9px 12px}
+.steps li .k{display:block;color:var(--dim);font-size:12px}
+.steps li code{font:600 15px ui-monospace,"DejaVu Sans Mono",Menlo,monospace;color:var(--fg);white-space:normal;word-break:break-word}
+.steps li code em{color:var(--yel);font-style:normal}
+.note{color:var(--dim);font-size:12.5px;margin-top:10px}
+.list{margin-top:16px}
+.tbl{overflow-x:auto;border-radius:12px;border:2px solid var(--line)}
+table{border-collapse:collapse;width:100%;min-width:720px;font-size:14px}
+th.n{text-align:right}
+th{background:var(--yel);color:var(--dark);text-align:left;padding:9px 10px;font-weight:700;white-space:nowrap}
+td{padding:8px 10px;border-top:1px solid var(--line);white-space:nowrap;font-variant-numeric:tabular-nums}
+tbody tr:nth-child(odd){background:var(--row)}
+td.n{text-align:right;font-family:ui-monospace,"DejaVu Sans Mono",Menlo,monospace}
+tfoot td{background:var(--dark);font-weight:700;color:var(--yel)}
+.del{background:transparent;border:0;color:var(--red);font-size:18px;cursor:pointer}
+.empty{color:var(--dim);padding:18px;text-align:center}
+.proj{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-bottom:12px}
+footer{color:var(--dim);font-size:12.5px;margin-top:22px;text-align:center}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+<div class="logo">TM</div><div class="brand" id="brand">TEKNİK MEKANİK</div>
+<a class="ig" href="https://www.instagram.com/teknik.mekaniktm/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="22" height="22"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4.3" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.6" cy="6.4" r="1.3" fill="currentColor"/></svg><span><b>@teknik.mekaniktm</b><small id="igt"></small></span></a>
+<div class="lang"><button data-l="tr" class="on">TR</button><button data-l="en">EN</button></div>
+<h1 id="ttl"></h1>
+</header>
+<div class="grid">
+<div class="col">
+<section class="card">
+<h2 id="h_type"></h2>
+<div class="types" id="types"></div>
+</section>
+<section class="card steps">
+<h2 id="h_steps"></h2>
+<ol id="steps"></ol>
+<div class="note" id="stepnote"></div>
+</section>
+</div>
+<section class="card dimcard">
+<h2 id="h_dim"></h2>
+<div class="fig" id="fig"></div>
+<div class="fields" id="fields"></div>
+<label class="chk" id="radwrap" hidden><input type="checkbox" id="rad"><span id="radtxt"></span></label>
+<div class="res">
+<div><small id="r1l"></small><b id="r1">–</b></div>
+<div><small id="r2l"></small><b id="r2">–</b></div>
+<div class="tot"><small id="r3l"></small><b id="r3">–</b></div>
+</div>
+<div class="btns"><button class="btn" id="add"></button></div>
+</section>
+</div>
+<section class="card list">
+<h2 id="h_list"></h2>
+<div class="proj">
+<label><span id="l_proj"></span><input id="proj"></label>
+<label><span id="l_by"></span><input id="by"></label>
+</div>
+<div class="tbl"><table>
+<thead><tr id="thead"></tr></thead>
+<tbody id="tbody"></tbody>
+<tfoot><tr><td colspan="8" id="tl"></td><td class="n" id="tt"></td><td></td></tr></tfoot>
+</table></div>
+<div class="btns"><button class="btn teal" id="pdf"></button><button class="btn ghost" id="clr"></button></div>
+<div class="note" id="tolnote"></div>
+</section>
+<footer id="foot"></footer>
+</div>
+<script>
+const T={tr:{ttl:'Malzeme <span>Ağırlık Hesabı</span>',type:'1 · Kesit tipi',dim:'2 · Ölçüler ve malzeme',steps:'3 · Hesap adım adım',list:'4 · Malzeme listesi',mat:'Malzeme',rho:'Yoğunluk (g/cm³)',len:'Boy (m)',qty:'Adet',size:'Ölçü',add:'+ Listeye ekle',pdf:'PDF indir',clr:'Listeyi temizle',proj:'Proje / iş adı',by:'Hazırlayan',empty:'Liste boş. Hesapladığın parçayı “Listeye ekle” ile buraya ekle.',total:'Genel toplam',cols:['#','Kesit','Ölçü (mm)','Malzeme','Boy','Adet','kg/m','Birim kg','Toplam kg',''],kgm:'Metre ağırlığı',kgm2:'Metrekare ağırlığı',piece:'Bir parça',tot:'Toplam',rad:'Köşe radyüsünü hesaba kat (EN 10219, yaklaşık)',sA:'Kesit alanı',sQ:'Metre ağırlığı',sP:'Bir parçanın ağırlığı',sT:'Toplam ağırlık',sV:'Hacim',sQ2:'Metrekare ağırlığı',sTab:'Tablo değeri',stepnote:'Birimler: ölçüler mm, yoğunluk g/cm³, boy m. 1000’e bölme mm²·g/cm³ → kg/m dönüşümüdür.',tol:'Teorik değerlerdir. Haddelenmiş profillerde ±%2,5, sac kalınlığında da tolerans vardır. Siparişe kesim firesini ekle.',foot:'Teknik Mekanik · ücretsiz hesap aracı',ig:'Instagram’da takip et',pdfT:'Malzeme Ağırlık Listesi',date:'Tarih',page:'Sayfa',det:'Hesap ayrıntıları',fixed:'çelik (tablo)',custom:'Özel',m:'m',pcs:'adet'},
+en:{ttl:'Material <span>Weight Calculator</span>',type:'1 · Section type',dim:'2 · Size and material',steps:'3 · Step-by-step calculation',list:'4 · Material list',mat:'Material',rho:'Density (g/cm³)',len:'Length (m)',qty:'Qty',size:'Size',add:'+ Add to list',pdf:'Download PDF',clr:'Clear list',proj:'Project / job',by:'Prepared by',empty:'The list is empty. Use “Add to list” to collect parts here.',total:'Grand total',cols:['#','Section','Size (mm)','Material','Length','Qty','kg/m','Unit kg','Total kg',''],kgm:'Weight per metre',kgm2:'Weight per m²',piece:'One piece',tot:'Total',rad:'Include corner radii (EN 10219, approx.)',sA:'Cross-section area',sQ:'Weight per metre',sP:'Weight of one piece',sT:'Total weight',sV:'Volume',sQ2:'Weight per m²',sTab:'Table value',stepnote:'Units: sizes in mm, density in g/cm³, length in m. Dividing by 1000 converts mm²·g/cm³ to kg/m.',tol:'Theoretical values. Rolled sections carry ±2.5% tolerance, plates vary in thickness too. Add cutting scrap to orders.',foot:'Technical Mechanics · free calculator',ig:'Follow on Instagram',pdfT:'Material Weight List',date:'Date',page:'Page',det:'Calculation details',fixed:'steel (table)',custom:'Custom',m:'m',pcs:'pcs'}};
+const MAT=[{tr:'Çelik',en:'Steel',r:7.85},{tr:'Paslanmaz 304',en:'Stainless 304',r:7.93},{tr:'Paslanmaz 316',en:'Stainless 316',r:8.0},{tr:'Alüminyum',en:'Aluminium',r:2.70},{tr:'Dökme demir',en:'Cast iron',r:7.2},{tr:'Bakır',en:'Copper',r:8.96},{tr:'Pirinç',en:'Brass',r:8.5},{tr:'Bronz',en:'Bronze',r:8.8},{tr:'Titanyum',en:'Titanium',r:4.51},{tr:'Özel',en:'Custom',r:null}];
+const TAB={IPE:{100:8.1,120:10.4,140:12.9,160:15.8,180:18.8,200:22.4,220:26.2,240:30.7,270:36.1,300:42.2},NPI:{80:5.94,100:8.34,120:11.1,140:14.3,160:17.9,180:21.9,200:26.2,220:31.1,240:36.2,260:41.9,280:47.9,300:54.2},HEA:{100:16.7,120:19.9,140:24.7,160:30.4,180:35.5,200:42.3,220:50.5,240:60.3,260:68.2,280:76.4,300:88.3},HEB:{100:20.4,120:26.7,140:33.7,160:42.6,180:51.2,200:61.3,220:71.5,240:83.2,260:93.0,280:103,300:117},NPU:{80:8.64,100:10.6,120:13.4,140:16.0,160:18.8,180:22.0,200:25.3,220:29.4,240:33.2,260:37.9,280:41.8,300:46.2}};
+const STD={IPE:'EN 10034',NPI:'EN 10024',HEA:'EN 10034',HEB:'EN 10034',NPU:'EN 10279'};
+const SH={
+sac:{n:{tr:'Sac / levha',en:'Plate'},kind:'plate',f:[['a',{tr:'En a',en:'Width a'},1000],['b',{tr:'Boy b',en:'Length b'},2000],['t',{tr:'Kalınlık t',en:'Thickness t'},3]]},
+disk:{n:{tr:'Disk / flanş',en:'Disc / flange'},kind:'plate',f:[['D',{tr:'Dış çap D',en:'Outer dia. D'},300],['d',{tr:'İç çap d',en:'Inner dia. d'},100],['t',{tr:'Kalınlık t',en:'Thickness t'},20]]},
+mil:{n:{tr:'Yuvarlak mil',en:'Round bar'},kind:'lin',f:[['d',{tr:'Çap d',en:'Diameter d'},50]]},
+kare:{n:{tr:'Kare dolu',en:'Square bar'},kind:'lin',f:[['a',{tr:'Kenar a',en:'Side a'},30]]},
+lama:{n:{tr:'Lama',en:'Flat bar'},kind:'lin',f:[['b',{tr:'Genişlik b',en:'Width b'},40],['t',{tr:'Kalınlık t',en:'Thickness t'},10]]},
+alti:{n:{tr:'Altıgen',en:'Hex bar'},kind:'lin',f:[['s',{tr:'Anahtar ağzı s',en:'Across flats s'},24]]},
+boru:{n:{tr:'Boru',en:'Tube'},kind:'lin',f:[['D',{tr:'Dış çap D',en:'Outer dia. D'},60.3],['t',{tr:'Et kalınlığı t',en:'Wall t'},3.6]]},
+kutu:{n:{tr:'Kutu profil',en:'Box section'},kind:'lin',f:[['a',{tr:'Yükseklik a',en:'Height a'},40],['b',{tr:'Genişlik b',en:'Width b'},40],['t',{tr:'Et kalınlığı t',en:'Wall t'},3]],rad:true},
+kos:{n:{tr:'Köşebent',en:'Angle'},kind:'lin',f:[['a',{tr:'Kol a',en:'Leg a'},50],['b',{tr:'Kol b',en:'Leg b'},50],['t',{tr:'Kalınlık t',en:'Thickness t'},5]]},
+IPE:{n:{tr:'IPE',en:'IPE'},kind:'tab'},NPI:{n:{tr:'NPI',en:'IPN'},kind:'tab'},HEA:{n:{tr:'HEA',en:'HEA'},kind:'tab'},HEB:{n:{tr:'HEB',en:'HEB'},kind:'tab'},NPU:{n:{tr:'NPU',en:'UPN'},kind:'tab'}};
+const ICON={sac:'<path d="M4 22 L26 10 L42 16 L20 28 Z" fill="#b0bcd0"/><path d="M4 22 L20 28 L20 31 L4 25 Z M20 28 L42 16 L42 19 L20 31Z" fill="#6a7896"/>',disk:'<circle cx="22" cy="17" r="14" fill="#2c5480" stroke="#f4f8fc"/><circle cx="22" cy="17" r="5" fill="#0e2a4a" stroke="#f4f8fc"/>',mil:'<circle cx="22" cy="17" r="13" fill="#2c5480" stroke="#f4f8fc"/>',kare:'<rect x="10" y="5" width="24" height="24" fill="#2c5480" stroke="#f4f8fc"/>',lama:'<rect x="4" y="11" width="36" height="12" fill="#2c5480" stroke="#f4f8fc"/>',alti:'<polygon points="22,3 34,10 34,24 22,31 10,24 10,10" fill="#2c5480" stroke="#f4f8fc"/>',boru:'<circle cx="22" cy="17" r="14" fill="#2c5480" stroke="#f4f8fc"/><circle cx="22" cy="17" r="10" fill="#0e2a4a" stroke="#f4f8fc"/>',kutu:'<rect x="8" y="4" width="28" height="26" rx="3" fill="#2c5480" stroke="#f4f8fc"/><rect x="12" y="8" width="20" height="18" rx="1.5" fill="#0e2a4a" stroke="#f4f8fc"/>',kos:'<path d="M10 4 H15 V25 H36 V30 H10 Z" fill="#2c5480" stroke="#f4f8fc"/>',IPE:'<path d="M10 4H34V8H24V26H34V30H10V26H20V8H10Z" fill="#2c5480" stroke="#f4f8fc"/>',NPI:'<path d="M12 4H32V8L24 9V25L32 26V30H12V26L20 25V9L12 8Z" fill="#2c5480" stroke="#f4f8fc"/>',HEA:'<path d="M8 5H36V9H24V25H36V29H8V25H20V9H8Z" fill="#2c5480" stroke="#f4f8fc"/>',HEB:'<path d="M7 4H37V9H25V25H37V30H7V25H19V9H7Z" fill="#2c5480" stroke="#f4f8fc"/>',NPU:'<path d="M14 4H32V8H19V26H32V30H14Z" fill="#2c5480" stroke="#f4f8fc"/>'};
+let L='tr',cur='boru',list=[];
+const $=id=>document.getElementById(id);
+const nf=(v,d=2)=>isFinite(v)?v.toLocaleString(L==='tr'?'tr-TR':'en-GB',{minimumFractionDigits:d,maximumFractionDigits:d}):'–';
+const pn=s=>parseFloat(String(s).replace(/\s/g,'').replace(',','.'));
+const vals={};
+try{const s=JSON.parse(localStorage.getItem('tm_agirlik')||'{}');if(s.list)list=s.list;if(s.L)L=s.L;if(s.cur&&SH[s.cur])cur=s.cur}catch(e){}
+function save(){try{localStorage.setItem('tm_agirlik',JSON.stringify({list,L,cur}))}catch(e){}}
+function fig(){const v=k=>{const n=pn(vals[cur+'_'+k]??0);return nf(n,Number.isInteger(n)?0:1)};const D='#f2b705',S='#2c5480',W='#f4f8fc',H='url(#h)';
+const defs='<defs><pattern id="h" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="8" height="8" fill="'+S+'"/><line x1="0" y1="0" x2="0" y2="8" stroke="#5f84ad" stroke-width="2"/></pattern></defs>';
+const tx=(x,y,t,a='middle')=>`<text x="${x}" y="${y}" fill="${D}" font-size="15" font-family="ui-monospace,monospace" font-weight="700" text-anchor="${a}">${t}</text>`;
+const ar=(x1,y1,x2,y2)=>`<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${D}" stroke-width="1.6" marker-start="url(#m)" marker-end="url(#m)"/>`;
+const mk='<marker id="m" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="'+D+'"/></marker>';
+let g='';
+if(cur==='mil')g=`<circle cx="160" cy="95" r="70" fill="${H}" stroke="${W}" stroke-width="2"/>${ar(90,180,230,180)}${tx(160,200,'d = '+v('d'))}`;
+else if(cur==='boru')g=`<circle cx="160" cy="95" r="72" fill="${H}" stroke="${W}" stroke-width="2"/><circle cx="160" cy="95" r="58" fill="#0e2a4a" stroke="${W}" stroke-width="2"/>${ar(88,184,232,184)}${tx(160,204,'D = '+v('D'))}${tx(250,60,'t = '+v('t'),'start')}<line x1="215" y1="58" x2="245" y2="58" stroke="${D}"/>`;
+else if(cur==='kare')g=`<rect x="95" y="25" width="130" height="130" fill="${H}" stroke="${W}" stroke-width="2"/>${ar(95,180,225,180)}${tx(160,200,'a = '+v('a'))}`;
+else if(cur==='lama')g=`<rect x="50" y="65" width="220" height="50" fill="${H}" stroke="${W}" stroke-width="2"/>${ar(50,150,270,150)}${tx(160,172,'b = '+v('b'))}${ar(290,65,290,115)}${tx(298,95,'t = '+v('t'),'start')}`;
+else if(cur==='alti')g=`<polygon points="160,20 225,57 225,133 160,170 95,133 95,57" fill="${H}" stroke="${W}" stroke-width="2"/>${ar(95,190,225,190)}${tx(160,210,'s = '+v('s'))}`;
+else if(cur==='kutu')g=`<rect x="85" y="20" width="150" height="150" rx="10" fill="${H}" stroke="${W}" stroke-width="2"/><rect x="101" y="36" width="118" height="118" rx="4" fill="#0e2a4a" stroke="${W}" stroke-width="2"/>${ar(85,190,235,190)}${tx(160,210,'b = '+v('b'))}${ar(60,20,60,170)}${tx(52,100,'a = '+v('a'),'end')}${tx(245,30,'t = '+v('t'),'start')}`;
+else if(cur==='kos')g=`<path d="M90 20 H108 V152 H240 V170 H90 Z" fill="${H}" stroke="${W}" stroke-width="2"/>${ar(90,190,240,190)}${tx(165,210,'b = '+v('b'))}${ar(65,20,65,170)}${tx(57,100,'a = '+v('a'),'end')}${tx(116,40,'t = '+v('t'),'start')}`;
+else if(cur==='sac')g=`<path d="M40 120 L190 40 L290 75 L140 155 Z" fill="${H}" stroke="${W}" stroke-width="2"/><path d="M40 120 L140 155 L140 168 L40 133Z M140 155 L290 75 L290 88 L140 168Z" fill="#6a7896"/>${tx(80,175,'a = '+v('a'))}${tx(250,145,'b = '+v('b'))}${tx(300,100,'t = '+v('t'),'start')}`;
+else if(cur==='disk')g=`<circle cx="160" cy="95" r="75" fill="${H}" stroke="${W}" stroke-width="2"/><circle cx="160" cy="95" r="26" fill="#0e2a4a" stroke="${W}" stroke-width="2"/>${ar(85,188,235,188)}${tx(160,208,'D = '+v('D'))}${ar(134,95,186,95)}${tx(160,85,'d')}${tx(250,40,'t = '+v('t'),'start')}`;
+else{const s=vals[cur+'_h']||Object.keys(TAB[cur])[5];const ic=ICON[cur].replace(/#2c5480/g,H);g=`<g transform="translate(70 0) scale(4.2)">${ic}</g>${tx(160,200,SH[cur].n[L]+' '+s)}`}
+$('fig').innerHTML=`<svg viewBox="0 0 320 215" role="img">${defs}<defs>${mk}</defs>${g}</svg>`}
+function compute(){const s=SH[cur],g=k=>pn(vals[cur+'_'+k]);const mi=+(vals.mat??0),rho=s.kind==='tab'?7.85:(MAT[mi].r??pn(vals.rho));const Ln=pn(vals.len),q=Math.max(1,Math.round(pn(vals.qty)||1));
+let A,qm,pc,st=[],dim='',k=T[L],fx=(v,d=2)=>'<em>'+nf(v,d)+'</em>';
+if(s.kind==='tab'){const h=vals[cur+'_h']||Object.keys(TAB[cur])[5];qm=TAB[cur][h];pc=qm*Ln;dim=s.n[L]+' '+h;
+st=[[k.sTab+' ('+STD[cur]+')',`${s.n[L]} ${h} → q = ${fx(qm,2)} kg/m`],[k.sP,`m = q × L = ${nf(qm)} × ${nf(Ln,2)} = ${fx(pc,2)} kg`]]}
+else if(s.kind==='plate'){const t=g('t');let V;
+if(cur==='sac'){const a=g('a'),b=g('b');V=a*b*t;dim=`${nf(a,0)} × ${nf(b,0)} × ${nf(t,1)}`;st.push([k.sV,`V = a × b × t = ${nf(a,0)} × ${nf(b,0)} × ${nf(t,1)} = ${fx(V,0)} mm³`])}
+else{const D=g('D'),d=g('d');V=Math.PI/4*(D*D-d*d)*t;dim=`Ø${nf(D,0)} / Ø${nf(d,0)} × ${nf(t,1)}`;st.push([k.sV,`V = π/4 × (D² − d²) × t = π/4 × (${nf(D,0)}² − ${nf(d,0)}²) × ${nf(t,1)} = ${fx(V,0)} mm³`])}
+qm=t*rho;pc=V*rho/1e6;st.push([k.sP,`m = V × ρ / 10⁶ = ${nf(V,0)} × ${nf(rho,2)} / 10⁶ = ${fx(pc,2)} kg`]);if(cur==='sac')st.push([k.sQ2,`t × ρ = ${nf(t,1)} × ${nf(rho,2)} = ${fx(qm,2)} kg/m²`])}
+else{
+if(cur==='mil'){const d=g('d');A=Math.PI/4*d*d;dim='Ø'+nf(d,1);st.push([k.sA,`A = π/4 × d² = π/4 × ${nf(d,1)}² = ${fx(A,1)} mm²`])}
+if(cur==='kare'){const a=g('a');A=a*a;dim=`□${nf(a,1)}`;st.push([k.sA,`A = a² = ${nf(a,1)}² = ${fx(A,1)} mm²`])}
+if(cur==='lama'){const b=g('b'),t=g('t');A=b*t;dim=`${nf(b,1)} × ${nf(t,1)}`;st.push([k.sA,`A = b × t = ${nf(b,1)} × ${nf(t,1)} = ${fx(A,1)} mm²`])}
+if(cur==='alti'){const x=g('s');A=Math.sqrt(3)/2*x*x;dim=`SW${nf(x,1)}`;st.push([k.sA,`A = (√3 / 2) × s² = 0,866 × ${nf(x,1)}² = ${fx(A,1)} mm²`.replace('0,866',L==='tr'?'0,866':'0.866')])}
+if(cur==='boru'){const D=g('D'),t=g('t');A=Math.PI*t*(D-t);dim=`Ø${nf(D,1)} × ${nf(t,1)}`;st.push([k.sA,`A = π × t × (D − t) = π × ${nf(t,1)} × (${nf(D,1)} − ${nf(t,1)}) = ${fx(A,1)} mm²`])}
+if(cur==='kutu'){const a=g('a'),b=g('b'),t=g('t');A=a*b-(a-2*t)*(b-2*t);dim=`${nf(a,0)} × ${nf(b,0)} × ${nf(t,1)}`;st.push([k.sA,`A = a·b − (a − 2t)(b − 2t) = ${nf(a,0)}·${nf(b,0)} − ${nf(a-2*t,1)}·${nf(b-2*t,1)} = ${fx(A,1)} mm²`]);
+if($('rad').checked){const c=(4-Math.PI)*3*t*t;A-=c;st.push([k.sA+' (R)',`A − (4 − π)·(r₀² − rᵢ²), r₀ = 2t, rᵢ = t → − ${nf(c,1)} = ${fx(A,1)} mm²`])}}
+if(cur==='kos'){const a=g('a'),b=g('b'),t=g('t');A=t*(a+b-t);dim=`L ${nf(a,0)} × ${nf(b,0)} × ${nf(t,1)}`;st.push([k.sA,`A = t × (a + b − t) = ${nf(t,1)} × (${nf(a,0)} + ${nf(b,0)} − ${nf(t,1)}) = ${fx(A,1)} mm²`])}
+qm=A*rho/1000;pc=qm*Ln;st.push([k.sQ,`q = A × ρ / 1000 = ${nf(A,1)} × ${nf(rho,2)} / 1000 = ${fx(qm,3)} kg/m`]);st.push([k.sP,`m = q × L = ${nf(qm,3)} × ${nf(Ln,2)} = ${fx(pc,2)} kg`])}
+const tot=pc*q;st.push([k.sT,`${nf(pc,2)} × ${q} ${k.pcs} = ${fx(tot,2)} kg`]);
+return{qm,pc,tot,q,Ln,dim,rho,st,mat:s.kind==='tab'?k.fixed:(MAT[mi].r==null?k.custom+' ('+nf(rho,2)+')':MAT[mi][L]),kind:s.kind}}
+function fields(){const s=SH[cur],k=T[L];let h='';
+if(s.kind==='tab'){const ks=Object.keys(TAB[cur]);const sel=vals[cur+'_h']||ks[5];h+=`<label>${k.size} (h, mm)<select data-k="${cur}_h">${ks.map(x=>`<option ${x==sel?'selected':''}>${x}</option>`).join('')}</select></label>`}
+else{s.f.forEach(([id,lb,df])=>{const key=cur+'_'+id;if(vals[key]===undefined)vals[key]=String(df).replace('.',L==='tr'?',':'.');h+=`<label>${lb[L]} (mm)<input inputmode="decimal" data-k="${key}" value="${vals[key]}"></label>`});
+h+=`<label>${k.mat}<select data-k="mat">${MAT.map((m,i)=>`<option value="${i}" ${+(vals.mat??0)===i?'selected':''}>${m[L]}${m.r?' · '+nf(m.r,2):''}</option>`).join('')}</select></label>`;
+if(MAT[+(vals.mat??0)].r==null)h+=`<label>${k.rho}<input inputmode="decimal" data-k="rho" value="${vals.rho??''}"></label>`}
+if(s.kind!=='plate')h+=`<label>${k.len}<input inputmode="decimal" data-k="len" value="${vals.len}"></label>`;
+h+=`<label>${k.qty}<input inputmode="numeric" data-k="qty" value="${vals.qty}"></label>`;
+$('fields').innerHTML=h;$('radwrap').hidden=!s.rad;
+$('fields').querySelectorAll('[data-k]').forEach(e=>{e.addEventListener('input',()=>{vals[e.dataset.k]=e.value;if(e.dataset.k==='mat'){fields()}upd()});e.addEventListener('change',()=>{vals[e.dataset.k]=e.value;if(e.dataset.k==='mat')fields();upd()})})}
+function upd(){const r=compute(),k=T[L],plate=SH[cur].kind==='plate';
+$('r1l').textContent=plate?k.kgm2:k.kgm;$('r1').textContent=isFinite(r.qm)?nf(r.qm,plate?2:3)+(plate?' kg/m²':' kg/m'):'–';
+$('r2l').textContent=k.piece;$('r2').textContent=isFinite(r.pc)?nf(r.pc)+' kg':'–';$('r3l').textContent=k.tot;$('r3').textContent=isFinite(r.tot)?nf(r.tot)+' kg':'–';
+$('steps').innerHTML=r.st.map(([a,b],i)=>`<li><span class="k">${i+1}. ${a}</span><code>${b}</code></li>`).join('');fig()}
+function types(){$('types').innerHTML=Object.keys(SH).map(x=>`<button data-t="${x}" class="${x===cur?'on':''}"><svg viewBox="0 0 44 34">${ICON[x]}</svg>${SH[x].n[L]}</button>`).join('');
+$('types').querySelectorAll('button').forEach(b=>b.onclick=()=>{cur=b.dataset.t;save();types();fields();upd()})}
+function table(){const k=T[L];$('thead').innerHTML=k.cols.map((c,i)=>`<th class="${i>=4&&i<=8?'n':''}">${c}</th>`).join('');
+if(!list.length){$('tbody').innerHTML=`<tr><td colspan="10" class="empty">${k.empty}</td></tr>`;$('tt').textContent='';$('tl').textContent='';return}
+$('tbody').innerHTML=list.map((r,i)=>`<tr><td>${i+1}</td><td>${SH[r.sh].n[L]}</td><td>${r.dim}</td><td>${r.mat}</td><td class="n">${r.kind==='plate'?'—':nf(r.Ln,2)+' m'}</td><td class="n">${r.q}</td><td class="n">${r.kind==='plate'?'—':nf(r.qm,3)}</td><td class="n">${nf(r.pc)}</td><td class="n">${nf(r.tot)}</td><td><button class="del" data-i="${i}" aria-label="sil">×</button></td></tr>`).join('');
+$('tl').textContent=k.total;$('tt').textContent=nf(list.reduce((a,r)=>a+r.tot,0))+' kg';
+$('tbody').querySelectorAll('.del').forEach(b=>b.onclick=()=>{list.splice(+b.dataset.i,1);save();table()})}
+function texts(){const k=T[L];document.documentElement.lang=L;$('ttl').innerHTML=k.ttl;$('brand').textContent=L==='tr'?'TEKNİK MEKANİK':'TECHNICAL MECHANICS';
+$('h_type').textContent=k.type;$('h_dim').textContent=k.dim;$('h_steps').textContent=k.steps;$('h_list').textContent=k.list;$('add').textContent=k.add;$('pdf').textContent=k.pdf;$('clr').textContent=k.clr;
+$('l_proj').textContent=k.proj;$('l_by').textContent=k.by;$('radtxt').textContent=k.rad;$('stepnote').textContent=k.stepnote;$('tolnote').textContent=k.tol;$('foot').textContent=k.foot;$('igt').textContent=k.ig;
+document.querySelectorAll('.lang button').forEach(b=>b.classList.toggle('on',b.dataset.l===L))}
+function all(){texts();types();fields();upd();table()}
+vals.len=vals.len??(L==='tr'?'6':'6');vals.qty=vals.qty??'1';
+document.querySelectorAll('.lang button').forEach(b=>b.onclick=()=>{L=b.dataset.l;save();all()});
+$('rad').onchange=upd;
+$('add').onclick=()=>{const r=compute();if(!isFinite(r.tot)||r.tot<=0)return;r.st=r.st.map(([a,b])=>[a,b.replace(/<\/?em>/g,'')]);list.push({sh:cur,...r});save();table()};
+$('clr').onclick=()=>{list=[];save();table()};
+$('pdf').onclick=()=>makePdf();
+function makePdf(){if(!list.length)return;const k=T[L],Wp=1240,Hp=1754,M=80,pages=[];let c,x,y;
+const np=()=>{c=document.createElement('canvas');c.width=Wp;c.height=Hp;x=c.getContext('2d');x.fillStyle='#fff';x.fillRect(0,0,Wp,Hp);x.textBaseline='middle';
+x.fillStyle='#123a63';x.fillRect(0,0,Wp,120);x.strokeStyle='#fff';x.lineWidth=4;x.strokeRect(M,32,76,56);x.fillStyle='#fff';x.font='bold 32px monospace';x.textAlign='center';x.fillText('TM',M+38,61);
+x.textAlign='left';x.font='bold 26px monospace';x.fillText(L==='tr'?'TEKNİK MEKANİK':'TECHNICAL MECHANICS',M+100,61);x.fillStyle='#f2b705';x.font='bold 30px sans-serif';x.textAlign='right';x.fillText(k.pdfT,Wp-M,61);
+x.textAlign='left';pages.push(c);y=170};
+const foot=(i,n)=>{const g=pages[i].getContext('2d');g.fillStyle='#6a7896';g.font='20px sans-serif';g.textAlign='left';g.fillText(k.tol,M,Hp-60,Wp-2*M);g.textAlign='right';g.fillText(`${k.page} ${i+1}/${n}`,Wp-M,Hp-30);g.textAlign='left';g.fillText(k.foot,M,Hp-30)};
+np();x.fillStyle='#123a63';x.font='bold 28px sans-serif';const pj=$('proj').value||'—',by=$('by').value||'—';
+x.fillText(`${k.proj}: ${pj}`,M,y);x.textAlign='right';x.fillText(`${k.date}: ${new Date().toLocaleDateString(L==='tr'?'tr-TR':'en-GB')}`,Wp-M,y);x.textAlign='left';y+=42;x.font='24px sans-serif';x.fillStyle='#444';x.fillText(`${k.by}: ${by}`,M,y);y+=50;
+const cw=[44,140,240,160,100,64,100,110,122],cols=k.cols.slice(0,9),al=[0,0,0,0,1,1,1,1,1];
+const head=()=>{x.fillStyle='#f2b705';x.fillRect(M,y-24,Wp-2*M,48);x.fillStyle='#0c2848';x.font='bold 21px sans-serif';let cx=M+8;cols.forEach((h,i)=>{x.textAlign=al[i]?'right':'left';x.fillText(h,al[i]?cx+cw[i]-12:cx,y);cx+=cw[i]});x.textAlign='left';y+=48};
+head();
+list.forEach((r,i)=>{if(y>Hp-220){np();head()}if(i%2===0){x.fillStyle='#eef3f9';x.fillRect(M,y-22,Wp-2*M,44)}
+const cells=[String(i+1),SH[r.sh].n[L],r.dim,r.mat,r.kind==='plate'?'—':nf(r.Ln,2)+' m',String(r.q),r.kind==='plate'?'—':nf(r.qm,3),nf(r.pc),nf(r.tot)];
+x.fillStyle='#111';x.font='21px sans-serif';let cx=M+8;cells.forEach((v,j)=>{x.textAlign=al[j]?'right':'left';x.fillText(v,al[j]?cx+cw[j]-12:cx,y,cw[j]-14);cx+=cw[j]});x.textAlign='left';y+=44});
+x.fillStyle='#123a63';x.fillRect(M,y-22,Wp-2*M,50);x.fillStyle='#f2b705';x.font='bold 26px sans-serif';x.fillText(k.total,M+12,y+3);x.textAlign='right';x.fillText(nf(list.reduce((a,r)=>a+r.tot,0))+' kg',Wp-M-12,y+3);x.textAlign='left';y+=80;
+if(y>Hp-260){np()}x.fillStyle='#123a63';x.font='bold 26px sans-serif';x.fillText(k.det,M,y);y+=40;
+list.forEach((r,i)=>{const need=34*(r.st.length+1)+16;if(y+need>Hp-140){np()}x.fillStyle='#123a63';x.font='bold 21px sans-serif';x.fillText(`${i+1}. ${SH[r.sh].n[L]} ${r.dim} · ${r.mat}`,M,y);y+=32;x.font='19px monospace';x.fillStyle='#333';r.st.forEach(([a,b])=>{x.fillText(`${a}: ${b}`,M+20,y,Wp-2*M-20);y+=30});y+=14});
+pages.forEach((_,i)=>foot(i,pages.length));
+const enc=new TextEncoder(),parts=[],offs=[];let len=0;const push=b=>{if(typeof b==='string')b=enc.encode(b);parts.push(b);len+=b.length};
+const imgs=pages.map(p=>{const d=atob(p.toDataURL('image/jpeg',0.9).split(',')[1]);const u=new Uint8Array(d.length);for(let i=0;i<d.length;i++)u[i]=d.charCodeAt(i);return u});
+const n=pages.length,obj=(id,body)=>{offs[id]=len;push(`${id} 0 obj\n`);body();push('\nendobj\n')};
+push('%PDF-1.4\n%\xE2\xE3\xCF\xD3\n');
+obj(1,()=>push('<< /Type /Catalog /Pages 2 0 R >>'));
+obj(2,()=>push(`<< /Type /Pages /Count ${n} /Kids [${pages.map((_,i)=>(3+i*3)+' 0 R').join(' ')}] >>`));
+pages.forEach((_,i)=>{const p=3+i*3,im=p+1,cs=p+2,cnt=`q 595.28 0 0 841.89 0 0 cm /I${i} Do Q`;
+obj(p,()=>push(`<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Resources << /XObject << /I${i} ${im} 0 R >> >> /Contents ${cs} 0 R >>`));
+obj(im,()=>{push(`<< /Type /XObject /Subtype /Image /Width ${Wp} /Height ${Hp} /ColorSpace /DeviceRGB /BitsPerComponent 8 /Filter /DCTDecode /Length ${imgs[i].length} >>\nstream\n`);push(imgs[i]);push('\nendstream')});
+obj(cs,()=>push(`<< /Length ${cnt.length} >>\nstream\n${cnt}\nendstream`))});
+const xo=len,tot=3+n*3;let xr=`xref\n0 ${tot}\n0000000000 65535 f \n`;for(let i=1;i<tot;i++)xr+=String(offs[i]).padStart(10,'0')+' 00000 n \n';
+push(xr+`trailer\n<< /Size ${tot} /Root 1 0 R >>\nstartxref\n${xo}\n%%EOF`);
+const blob=new Blob(parts,{type:'application/pdf'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);
+a.download=(($('proj').value||(L==='tr'?'agirlik_listesi':'weight_list')).replace(/[^\wçğıöşüÇĞİÖŞÜ-]+/g,'_'))+'.pdf';document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},1500)}
+all();
+</script>
+</body>
+</html>
